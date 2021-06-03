@@ -1,0 +1,8 @@
+---
+- name: use galaxy nginx role
+  hosts: Slave2
+  user: ubuntu
+  become: true
+
+  roles:
+    - role: geerlingguy.nginx
