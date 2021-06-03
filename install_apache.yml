@@ -1,0 +1,18 @@
+---
+- hosts: Slave2
+  become: true
+  tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: replace index.html
+      copy:
+        dest: /var/www/html/index.html
+        content: "Hi I am host {{ ansible_hostname }} and i run on the linux kernel {{ ansible_kernel}}\n"
+      register: index_file
+
+    - name: output index_file var contents
+      debug:
+        msg: "{{ index_file }}"
